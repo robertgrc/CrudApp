@@ -3,7 +3,7 @@ import CrudTableRow from './CrudTableRow';
 
 const CrudTable = ({data}) => {
 
-     console.log(data)
+    //  console.log(data)
   return (
     <div>
         <h3>Tabla de Datos</h3>
