@@ -1,0 +1,29 @@
+{
+  "profetas": [
+    {
+      "id": 1,
+      "name": "Mateo",
+      "constellation": "Matityah"
+    },
+    {
+      "id": 2,
+      "name": "Lucas",
+      "constellation": "hillel"
+    },
+    {
+      "id": 3,
+      "name": "Isaias",
+      "constellation": "yeshayah"
+    },
+    {
+      "id": 4,
+      "name": "abram",
+      "constellation": "Abraham"
+    },
+    {
+      "id": 5,
+      "name": "yaakov",
+      "constellation": "Yaakov"
+    }
+  ]
+}
