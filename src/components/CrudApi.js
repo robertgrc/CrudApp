@@ -2,22 +2,31 @@ import React, { useEffect, useState } from "react";
 import { helpHttp } from "../helpers/helpHttp";
 import CrudForm from "./CrudForm";
 import CrudTable from "./CrudTable";
+import Loader from "./Loader";
+import Message from "./Message";
 
 const CrudApi = () => {
-  const [db, setDb] = useState([]);
+  const [db, setDb] = useState(null);
   const [dataToEdit, setDataToEdit] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   let api = helpHttp();
   let url = "http://localhost:5000/profetas";
 
   useEffect(() => {
+    setLoading(true);
+
     api.get(url).then((res) => {
       console.log(res);
       if (!res.err) {
         setDb(res);
+        setError(null);
       } else {
-        setDb([]);
+        setDb(null);
+        setError(res);
       }
+      setLoading(false);
     });
   }, []);
 
@@ -42,17 +51,23 @@ const CrudApi = () => {
   return (
     <>
       <h1>Crud API</h1>
-      <CrudForm
-        createData={createData}
-        updateData={updateData}
-        dataToEdit={dataToEdit}
-        setDataToEdit={setDataToEdit}
-      />
-      <CrudTable
-        data={db}
-        setDataToEdit={setDataToEdit}
-        deleteData={deleteData}
-      />
+      <article className="grid-1-2">
+        <CrudForm
+          createData={createData}
+          updateData={updateData}
+          dataToEdit={dataToEdit}
+          setDataToEdit={setDataToEdit}
+        />
+        {loading && <Loader />}
+        {error && <Message />}
+        {db && (
+          <CrudTable
+            data={db}
+            setDataToEdit={setDataToEdit}
+            deleteData={deleteData}
+          />
+        )}
+      </article>
     </>
   );
 };
