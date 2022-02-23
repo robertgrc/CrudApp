@@ -1,8 +1,22 @@
 import React from "react";
 import { useForm } from "./hooks/useForm";
 
-const initialForm = {};
-const validationsForm = (form) => {};
+const initialForm = {
+  name: "",
+  email: "",
+  subject: "",
+  comments: "",
+};
+
+const validationsForm = (form) => {
+  let errors = {};
+
+  if (!form.name.trim()) {
+    errors.name = "El campo 'nombre' es requerido";
+  }
+
+  return errors;
+};
 
 const ContactForm = () => {
   const {
